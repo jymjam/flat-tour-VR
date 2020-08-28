@@ -1,0 +1,234 @@
+
+
+
+<!DOCTYPE html>
+<html>
+    <!--Dev Url: http://localhost/flatvr/-->
+    <head>
+        <title>VR Flat Tour</title>
+        <!--meta needed for the generic ASCII encoding error-->
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
+        <!-- include A-Frame, ar.js for A-Frame, and three.js-->
+        <!--<script src="myass/aframe.min.js"></script>-->
+        <script src="https://aframe.io/releases/1.0.0/aframe.min.js"></script>
+        <!--<script src="../../webarfiles/AFrame/aframe/aframe.min.js"></script>-->
+        <!--<script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.js"></script>-->
+        <!--<script src="https://threejs.org/build/three.js"></script>-->
+        <!--eventhandler and user interactions-->
+        <script src="https://unpkg.com/aframe-event-set-component@5.0.0/dist/aframe-event-set-component.min.js"></script>
+        <!--STATS SCRIPT-->
+        <script>
+            (function(){var script=document.createElement('script');
+            script.onload=function(){var stats=new Stats();
+            document.body.appendChild(stats.dom);
+                requestAnimationFrame(function loop(){stats.update();
+                requestAnimationFrame(loop)});};
+            script.src='//mrdoob.github.io/stats.js/build/stats.min.js';
+            document.head.appendChild(script);})()
+        </script>
+    </head>
+
+    <body style='margin : 0px; overflow: hidden;'>
+        <!--"rayorigin: mouse" makes the mouse interactive-->
+        <a-scene cursor="rayOrigin: mouse">
+            <!--imported assets-->
+            <a-asset>
+                <!--flat model | material-->
+                <a-asset-item id="oflat" src="model/myHome.obj"></a-asset-item>
+                <a-asset-item id="mflat" src="model/myHome.mtl"></a-asset-item>
+                <video id="tv" src="model/Aerial Shot Of Sunset.mp4" loop="true"></video>
+                <a-asset-item id="odoor" src="model/homeDoor.obj"></a-asset-item>
+                <a-asset-item id="mdoor" src="model/homeDoor.mtl"></a-asset-item>
+                <!--panoramic sky asset-->
+                <img id="park" src="model/park.jpg">
+
+            </a-asset>
+
+            <!--BASIC SCENE SETUP | CAMERA | SKY | GROUND PLANE-->
+            <!--user camera startup | cursor for user interaction-->
+            <a-entity position="0 0 3">
+                <a-camera 
+                    user_height="1.6">
+                    <!--"cursor position" is very important-->
+                    <a-entity 
+                        cursor position="0 0 -1"
+                        geometry="primitive: sphere; radius: 0.005"
+                        material="color: red; shader: flat; opacity: 0.5">
+                    </a-entity>
+                </a-camera>
+            </a-entity>
+            
+            <!--sky-->
+            <a-sky src="#park"></a-sky>
+            <!--<a-sky src="#overcastsky"></a-sky>-->
+            <!--ground-->
+            <a-plane 
+                color="grey"
+                rotation="-90 0 0"
+                position="-2 0 -4"
+                scale="10 8 1">
+            </a-plane>
+            <!--BASIC SETUP COMPLETE-->
+
+            <!--help text | instructions-->
+            <a-entity 
+                text="value: >Light too dim? Click on 
+                small yellow cubical switches to 
+                increase brightness, located
+                in the same room as the light.
+
+                first one is to the left, of this door-------->
+                >click TV to watch;
+                    wrapCount: 37.09" 
+                scale="4 4 0.00001"
+                position=" -2.28 2.02 -0.90">
+            </a-entity>
+
+            <!--Adds the house model to the scene-->
+            <a-entity 
+                obj-model="obj: #oflat; mtl: #mflat"
+                position="-2 0 -6"
+                rotation="0 -90 0"
+                scale="1 1 1">
+            </a-entity>
+
+            <!--lighting/switch system-->
+            <!--living room light-->
+            <a-entity 
+                id="living"
+                light="type: point; 
+                    intensity: 1.5; 
+                    distance: 6" 
+                position="1.47447 2.8 -4.30625">
+            </a-entity>
+            <!--livingroom light switch-->
+            <a-box
+                color="yellow"
+                scale="0.1 0.4 0.1"
+                position="-1.16993 1.28299 -1.11115"
+                event-set__click="_target: #living; light.intensity: 5">
+            </a-box>
+
+            <!--bedroom1 light-->
+            <a-entity 
+                id="bedroom1" 
+                light="type: point; 
+                    intensity: 3; 
+                    distance: 3.86; 
+                    color: #ffffff" 
+                position="-2.28985 2.99128 -9.74539"
+                animation="type">
+            </a-entity>
+            <!--swtich for bedroom1 light-->
+            <a-box
+                color="grey"
+                scale="0.1 0.4 0.1"
+                position="-2.51763 1.28299 -6.88988"
+                event-set__click="_target: #bedroom1; light.intensity: 6">
+            </a-box>
+
+            <!--bedroom2 lights-->
+            <a-entity 
+                id="bedroom2" 
+                light="type: point; 
+                    intensity: 1.5; 
+                    distance: 3.86; 
+                    color: #ffffff" 
+                position="-5.52925 2.991 -9.73737">
+            </a-entity>
+            <!--swtich for bedroom2 light-->
+            <a-box
+                color="grey"
+                scale="0.1 0.4 0.1"
+                position="-5.44308 1.28299 -6.88988"
+                event-set__click="_target: #bedroom2; light.intensity: 6">
+            </a-box>
+
+            <!--bathroom1 lights-->
+            <a-entity 
+                id="bathroom1" 
+                light="type: point; 
+                    intensity: 1.5; 
+                    distance: 3.86; 
+                    color: #ffffff" 
+                position="-5.62925 2.991 -5.61737">
+            </a-entity>
+            <!--swtich for bathroom1 light-->
+            <a-box
+                color="grey"
+                scale="0.1 0.4 0.1"
+                position="-4.57539 1.28299 -5.55336"
+                event-set__click="_target: #bathroom1; light.intensity: 6">
+            </a-box>
+
+            <!--TEXT at the door | Enter Here-->
+            <a-entity 
+                text="value: Enter Here; 
+                    wrapCount: 37.09" 
+                scale="4 4 0.00001"
+                position=" 1.28 2.42 -0.90">
+            </a-entity>
+
+            <!--tv video | entity: click to hide video-->
+            <a-video 
+                id="tele"
+                src="#tv"
+                scale="1.24224 0.55923 1.44439" 
+                position="-0.87659 1.57389 -3.90814"
+                rotation="0 90 0">
+                <a-entity
+                    scale="1.24224 0.55923 1.44439" 
+                    position="-0.87659 1.57389 -3.90814"
+                    event-set__click="_target: #tele; video.visible: false">
+                </a-entity>
+            </a-video>
+            <!--adds functionality to TV-->
+            <script>
+                AFRAME.registerComponent('play-pause', {
+                    init: function(){
+                        var myvid = document.querySelector('#tele');
+                        var vidcontrols = document.querySelector('#tvswitch');
+                        if (myvid.paused){myvid.play(); vidcontrols.setAttribute(0x66cd00);}
+                        else {myvid.pause(); vidcontrols.setAttribute(color = 0x8b0000);}
+                    }//init function()
+                })//register component
+            </script>
+
+            <a-box id="tvswitch"
+                color="black"
+                scale="0.1 0.1 0.1"
+                position="-0.911 2.105, -3.81"></a-box>
+
+            <!-------glitch update paste code from here---------->
+
+            <!--bathroom1 lights-->
+            <a-entity 
+                id="bathroom2" 
+                light="type: point; 
+                    intensity: 1.5; 
+                    distance: 3.86; 
+                    color: #ffffff" 
+                position="-5.07400 2.991 -1.67300">
+            </a-entity>
+
+            <a-entity
+                obj-model="obj: #odoor;"
+                rotation="0 90 0"
+                position="1.432 0 3.852"
+                event-set__click="_event: click;"
+                animation="property: rotaton;
+                        to: 0 360 0;
+                        dur: 10000;
+                        loop: true;
+                        easing: linear">
+            </a-entity>
+
+            <a-entity
+                light="type: spot; intensity: 0.5"
+                position="-0.22 0.5 0"></a-entity>
+            
+            
+        </a-scene>
+    </body>
+</html>
