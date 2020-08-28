@@ -6,6 +6,7 @@ The model is to the scale created, considering a person's height to be 1.6m.
 * 3D Virtual Reality
 * functional light switches in rooms.
 * working Television.
+* supports both mouse clicks to register events and ray-casting for VR headsets (look for a red dot).
 
 #### EVERYTHING IN THIS PROJECT IS HOMEMADE, 
 * the house model, including the furnitures were made on **blender**
