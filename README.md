@@ -16,4 +16,4 @@ The model is to the scale created, considering a person's height to be 1.6m.
 * few walls have gaps. probably due to miscalculations on blender. 
 
 ## Hosted on Glitch 
-[source] (https://nwordproductions.glitch.me/)
+[source](https://nwordproductions.glitch.me/)
