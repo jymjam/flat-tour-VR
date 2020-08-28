@@ -14,3 +14,6 @@ The model is to the scale created, considering a person's height to be 1.6m.
 ## Known Bugs
 * My 3D models are dimensions are inverted. causing a mental diarrhoea.
 * few walls have gaps. probably due to miscalculations on blender. 
+
+## Hosted on Glitch 
+[source] (https://nwordproductions.glitch.me/)
