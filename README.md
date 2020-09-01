@@ -10,11 +10,11 @@ The model is to the scale created, considering a person's height to be 1.6m.
 
 #### EVERYTHING IN THIS PROJECT IS HOMEMADE, 
 * the house model, including the furnitures were made on **blender**
-* __except__ Skybox panoramic image: [source website](texturify.com)
+* __except__ Skybox panoramic image: [source](texturify.com)
 
 ## Known Bugs
-* My 3D models are dimensions are inverted. causing a mental diarrhoea.
-* few walls have gaps. probably due to miscalculations on blender. 
+* My 3D sofa models somehow have their dimensions inverted, causing a visual diarrhoea.
+* few walls have gaps. probably due to miscalculations on blender.
 
 ## Hosted on Glitch 
 [source](https://nwordproductions.glitch.me/)
